@@ -1,0 +1,67 @@
+<%- include("header") -%>
+
+<div class="bg"></div>
+<div class="bg bg2"></div>
+<div class="bg bg3"></div>
+
+<!-- Create new list -->
+<form class="create" action="/createList" method="post">
+  <input type="text" name="newList" placeholder="New List" autocomplete="off" class="create-input">
+  <button type="submit" name="list" class="createbtn">Create</button>
+</form>
+
+<!-- Main content -->
+<div class="content">
+
+  <div class="top">
+    <!-- Dropdown list -->
+    <h4 class="listName top">
+      <div class="dropdown">
+        <button class="dropbtn"><%= listTitle %> <i class="fas fa-caret-down"></i></button>
+        <div class="dropdown-content">
+
+          <a href="/">Default</a>
+          <% lists.forEach(function(list) { %>
+
+
+          <a href="/<%= list.name %>"><%= list.name %></a>
+
+
+          <% }); %>
+        </div>
+      </div>
+    </h4>
+    <!-- Date -->
+    <h4 class="date top"><%= listDate %></h4>
+  </div>
+
+  <!-- Heading -->
+  <div class="box" id="heading">
+    <h1>TO-DO LIST</h1>
+  </div>
+
+  <div class="box">
+
+    <!-- Task list -->
+    <% newListItems.forEach(function(item){ %>
+
+    <form class="" action="/delete" method="post">
+      <div class="item">
+        <input type="checkbox" name="checkbox" value="<%= item._id %>" onChange="this.form.submit()">
+        <p><%=  item.name  %></p>
+      </div>
+      <input type="hidden" name="listName" value="<%= listTitle %>">
+    </form>
+
+    <% }) %>
+
+    <!-- Add new item -->
+    <form class="item" action="/" method="post">
+      <input type="text" name="newItem" placeholder="New Item" autocomplete="off">
+      <button type="submit" name="list" value="<%= listTitle %>">+</button>
+    </form>
+  </div>
+
+  <%- include("footer") -%>
+
+</div>
