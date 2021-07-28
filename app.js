@@ -3,6 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const date = require(__dirname + "/date.js");
+const url = require(__dirname + "/config.js");
 const _ = require("lodash");
 
 const app = express();
@@ -18,7 +19,7 @@ app.use(express.static("public"));
 // mongoose.connect("mongodb://localhost:27017/todolistDB", {useNewUrlParser: true});
 
 // connecting to mongodb atlas
-mongoose.connect("mongodb+srv://admin-shalini:shalini@cluster0.qlb4z.mongodb.net/todolistDB?retryWrites=true&w=majority", {useNewUrlParser: true});
+mongoose.connect(url, {useNewUrlParser: true});
 
 // schema for each task
 const itemsSchema = {
